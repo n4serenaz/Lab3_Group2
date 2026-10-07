@@ -1,6 +1,5 @@
 from logic import *
 
-
 def solve(puzzle_name, people, knowledge):
     """Print the entailed kind (Knight or Knave) of each person."""
     print(puzzle_name)
@@ -15,10 +14,7 @@ def solve(puzzle_name, people, knowledge):
             print(f"{person}: unknown")
     print()
 
-
-# ============================================================
 # Puzzle 0: A says "I am both a knight and a knave."
-# ============================================================
 AKnight = Symbol("A is a Knight")
 AKnave = Symbol("A is a Knave")
 
@@ -30,13 +26,9 @@ knowledge0 = And(
     Implication(AKnight, And(AKnight, AKnave)),
     Implication(AKnave, Not(And(AKnight, AKnave))),
 )
-
 solve("Puzzle 0:", ["A"], knowledge0)
 
-
-# ============================================================
 # Puzzle 1: A says "We are both knaves." B says nothing.
-# ============================================================
 AKnight = Symbol("A is a Knight")
 AKnave = Symbol("A is a Knave")
 BKnight = Symbol("B is a Knight")
@@ -54,14 +46,10 @@ knowledge1 = And(
     Implication(AKnave, Not(statement1)),
     # B says nothing -> no constraint
 )
-
 solve("Puzzle 1:", ["A", "B"], knowledge1)
 
-
-# ============================================================
 # Puzzle 2: A says "We are the same kind."
 #           B says "We are of different kinds."
-# ============================================================
 AKnight = Symbol("A is a Knight")
 AKnave = Symbol("A is a Knave")
 BKnight = Symbol("B is a Knight")
@@ -84,14 +72,11 @@ knowledge2 = And(
 
 solve("Puzzle 2:", ["A", "B"], knowledge2)
 
-
-# ============================================================
 # Bonus Puzzle 3:
 #   A says either "I am a knight." or "I am a knave." (unknown which)
 #   B says "A said 'I am a knave'."
 #   B also says "C is a knave."
 #   C says "A is a knight."
-# ============================================================
 AKnight = Symbol("A is a Knight")
 AKnave = Symbol("A is a Knave")
 BKnight = Symbol("B is a Knight")
@@ -113,7 +98,7 @@ AStatement = Or(
 # B's utterance is a conjunction of two claims.
 BStatement = And(ASaidKnave, CKnave)  # "A said 'I am a knave'" AND "C is a knave"
 
-# C's utterance.
+# C's utterance
 CStatement = AKnight                  # "A is a knight"
 
 knowledge3 = And(
